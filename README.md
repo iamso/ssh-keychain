@@ -6,22 +6,22 @@ Bash
 Upload your default SSH key:
 
 ```bash
-curl -sk ssh.your-domain.tld/<email>/upload | bash
+curl -sk <url>/<email>/upload | bash
 ```
 
 Install your key into authorized_keys:
 
 ```bash
-curl -sk ssh.your-domain.tld/<email>/install | bash
+curl -sk <url>/<email>/install | bash
 ```
 
 URLS
 ----
 
 ```
-ssh.your-domain.tld/<email>/upload
-ssh.your-domain.tld/<email>/install
-ssh.your-domain.tld/<email>/fingerprint
+<url>/<email>/upload
+<url>/<email>/install
+<url>/<email>/fingerprint
 ```
 
 Credits
