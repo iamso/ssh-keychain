@@ -9,6 +9,12 @@ var port = process.env.PORT || 8088,
 	
 app.use(bodyParser.json());
 
+// show help
+app.get('/:email/help', function(req,res){
+	res.contentType('text/plain');
+	res.render('help.ejs', {email: req.params.email, url: 'https://' + req.get('host')});
+});
+
 // get upload script
 app.get('/:email/upload', function(req,res){
 	res.contentType('text/plain');

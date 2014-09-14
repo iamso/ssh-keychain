@@ -19,6 +19,7 @@ URLS
 ----
 
 ```
+<url>/<email>/help
 <url>/<email>/upload
 <url>/<email>/install
 <url>/<email>/fingerprint
