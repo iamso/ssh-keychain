@@ -14,7 +14,7 @@ app.get('/:email/upload', function(req,res){
 	res.contentType('text/plain');
 	db.find({ email: req.params.email }, function (err, docs) {
 		if (!docs.length) {
-			res.render('upload.ejs', {url: req.protocol + '://' + req.get('host') + '/' + req.params.email, keypath: req.query.keypath});
+			res.render('upload.ejs', {url: 'https://' + req.get('host') + '/' + req.params.email, keypath: req.query.keypath});
 		}
 		else {
 			res.send('echo -e "\\033[31mSorry I just can\'t do it!\\033[0m"');
