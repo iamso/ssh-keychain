@@ -1,0 +1,26 @@
+{
+  "name": "ssh",
+  "version": "0.1.0",
+  "description": "store public ssh keys",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Steve Ottoz",
+  "license": "ISC",
+  "homepage": "https://git.dev.so/lab/ssh-keychain",
+  "bugs": {
+    "url": "https://git.dev.so/lab/ssh-keychain/issues"
+    },
+  "repository": {
+    "type": "git",
+    "url": "https://git.dev.so/lab/ssh-keychain.git"
+  },
+  "dependencies": {
+    "body-parser": "^1.8.1",
+    "ejs": "^1.0.0",
+    "express": "^4.9.0",
+    "nedb": "^0.11.1",
+    "ssh-fingerprint": "0.0.0"
+  }
+}
