@@ -19,4 +19,4 @@ then
 	echo "Specify a correct path with 'keypath' parameter in URL."
 	exit 1
 fi
-curl -s -H "Content-Type: application/json" -X PUT -d '{"key":"'"$(cat $keypath)"'"}' "<%-url%>"
+curl -sk -H "Content-Type: application/json" -X PUT -d '{"key":"'"$(cat $keypath)"'"}' "<%-url%>"

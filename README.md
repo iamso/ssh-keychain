@@ -6,13 +6,13 @@ Bash
 Upload your default SSH key:
 
 ```bash
-curl -s ssh.your-domain.tld/<email>/upload | bash
+curl -sk ssh.your-domain.tld/<email>/upload | bash
 ```
 
 Install your key into authorized_keys:
 
 ```bash
-curl -s ssh.your-domain.tld/<email>/install | bash
+curl -sk ssh.your-domain.tld/<email>/install | bash
 ```
 
 URLS
