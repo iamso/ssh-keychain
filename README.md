@@ -31,6 +31,7 @@ This project couldn't do what it does without these node packages:
 
 - [express](https://www.npmjs.org/package/express)
 - [body-parser](https://www.npmjs.org/package/body-parser)
+- [serve-favicon](https://www.npmjs.org/package/serve-favicon)
 - [ejs](https://www.npmjs.org/package/ejs)
 - [nedb](https://www.npmjs.org/package/nedb)
 - [ssh-fingerprint](https://www.npmjs.org/package/ssh-fingerprint)

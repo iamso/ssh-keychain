@@ -2,12 +2,14 @@ var port = process.env.PORT || 8088,
 	express = require('express'),
 	app = express(),
 	bodyParser = require('body-parser'),
+	favicon = require('serve-favicon'),
 	fingerprint = require('ssh-fingerprint'),
 	Datastore = require('nedb'),
 	db = new Datastore({ filename: 'data/db', autoload: true }),
 	pjson = require('./package.json');
 	
 app.use(bodyParser.json());
+app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // show help
 app.get('/:email/help', function(req,res){
