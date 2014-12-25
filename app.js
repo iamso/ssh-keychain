@@ -7,14 +7,14 @@ var port = process.env.PORT || 8088,
 	Datastore = require('nedb'),
 	db = new Datastore({ filename: 'data/db', autoload: true }),
 	pjson = require('./package.json');
-	
+
 app.use(bodyParser.json());
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // show help
 app.get('/:email/help', function(req,res){
 	res.contentType('text/plain');
-	res.render('help.ejs', {email: req.params.email, url: 'https://' + req.get('host')});
+	res.render('help.ejs', {email: req.params.email, url: urlScheme(req) + req.get('host')});
 });
 
 // get upload script
@@ -22,7 +22,7 @@ app.get('/:email/upload', function(req,res){
 	res.contentType('text/plain');
 	db.find({ email: req.params.email }, function (err, docs) {
 		if (!docs.length) {
-			res.render('upload.ejs', {url: 'https://' + req.get('host') + '/' + req.params.email, keypath: req.query.keypath});
+			res.render('upload.ejs', {url: urlScheme(req) + req.get('host') + '/' + req.params.email, keypath: req.query.keypath});
 		}
 		else {
 			res.send('echo -e "\\033[31mSorry I just can\'t do it!\\033[0m"');
@@ -95,6 +95,11 @@ app.use(function(err, req, res, next){
 	res.contentType('text/plain');
 	res.send('Something went wrong.');
 });
+
+// return correct url scheme
+var urlScheme = function(req) {
+	return (req.headers['x-forwarded-proto'] || 'http') + '://';
+};
 
 // start server
 var server = app.listen(port, function() {
