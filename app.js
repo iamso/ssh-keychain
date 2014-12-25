@@ -37,12 +37,14 @@ app.put('/:email', function(req,res){
 		if (!docs.length) {
 			db.insert({email: req.params.email, key: req.body.key, created: Date.now()}, function (err, newDoc){
 				if (err === null) {
-
+					res.send(fingerprint(req.body.key) + "\n");
+				}
+				else {
+					res.send('Error uploading key.\n');
 				}
 			});
 		}
 	});
-	res.end();
 });
 
 // get ssh key
@@ -63,7 +65,7 @@ app.get('/:email/install', function(req,res){
 	res.contentType('text/plain');
 	db.find({ email: req.params.email }, function (err, docs) {
 		if (docs.length === 1) {
-			res.render('install.ejs', {key: docs[0].key});
+			res.render('install.ejs', {key: docs[0].key, fingerprint: fingerprint(docs[0].key)});
 		}
 		else {
 			res.send('echo -e "\\033[31mNo key to install.\\033[0m"');
