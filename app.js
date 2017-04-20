@@ -11,6 +11,12 @@ var port = process.env.PORT || 8088,
 app.use(bodyParser.json());
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
+// show initial screen
+app.get('/', function(req,res) {
+  res.contentType('text/plain');
+  res.render('help.ejs', {email: 'your@email.tld', url: urlScheme(req) + req.get('host')});
+});
+
 // show help
 app.get('/:email/help', function(req,res){
 	res.contentType('text/plain');
