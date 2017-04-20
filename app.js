@@ -30,6 +30,32 @@ app.get('/:email/upload', function(req,res){
 	});
 });
 
+// get install script
+app.get('/:email/install', function(req,res){
+	res.contentType('text/plain');
+	db.find({ email: req.params.email }, function (err, docs) {
+		if (docs.length === 1) {
+			res.render('install.ejs', {key: docs[0].key, fingerprint: fingerprint(docs[0].key)});
+		}
+		else {
+			res.send('echo -e "\\033[31mNo key to install.\\033[0m"');
+		}
+	});
+});
+
+// get ssh key fingerprint
+app.get('/:email/fingerprint', function(req,res){
+	res.contentType('text/plain');
+	db.find({ email: req.params.email }, function (err, docs) {
+		if (docs.length === 1) {
+			res.send(fingerprint(docs[0].key) + "\n");
+		}
+		else {
+			res.send('No key found.');
+		}
+	});
+});
+
 // upload ssh key
 app.put('/:email', function(req,res){
 	res.contentType('text/plain');
@@ -53,32 +79,6 @@ app.get('/:email', function(req,res){
 	db.find({ email: req.params.email }, function (err, docs) {
 		if (docs.length === 1) {
 			res.send(docs[0].key);
-		}
-		else {
-			res.send('No key found.');
-		}
-	});
-});
-
-// get install script
-app.get('/:email/install', function(req,res){
-	res.contentType('text/plain');
-	db.find({ email: req.params.email }, function (err, docs) {
-		if (docs.length === 1) {
-			res.render('install.ejs', {key: docs[0].key, fingerprint: fingerprint(docs[0].key)});
-		}
-		else {
-			res.send('echo -e "\\033[31mNo key to install.\\033[0m"');
-		}
-	});
-});
-
-// get ssh key fingerprint
-app.get('/:email/fingerprint', function(req,res){
-	res.contentType('text/plain');
-	db.find({ email: req.params.email }, function (err, docs) {
-		if (docs.length === 1) {
-			res.send(fingerprint(docs[0].key) + "\n");
 		}
 		else {
 			res.send('No key found.');
